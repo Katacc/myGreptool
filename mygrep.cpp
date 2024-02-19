@@ -78,6 +78,8 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
+
+
         string line { };
 
         int foundLines { 0 };
@@ -117,6 +119,8 @@ int main(int argc, char *argv[]) {
             showLineNumbers = true;
         }
 
+
+        string originalSearchString = searchString;
 
         // Reversesearch
         if (reverseSearch) {
@@ -170,6 +174,7 @@ int main(int argc, char *argv[]) {
 
                 initialString += line + "\n";
 
+
                 if (ignoreCases) {
                     for (int i = 0; i < initialString.length(); i++) {
                         initialString.at(i) = tolower(initialString.at(i));
@@ -207,12 +212,12 @@ int main(int argc, char *argv[]) {
 
 
         // o option käyttö
-        if (showContainingLine) {
-            cout << "Occurences of lines containing : " << "'" <<searchString << "'" << ", " << foundLines <<endl;
+        if (showContainingLine && !reverseSearch) {
+            cout << "Occurences of lines containing : " << "'" << originalSearchString << "': " << foundLines << endl;
         }
 
         else if (reverseSearch && showContainingLine) {
-            cout << "Occurences of lines not containing : " << searchString << " " << foundLines << endl;
+            cout << "Occurences of lines NOT containing : " << "'" << originalSearchString << " ': " << foundLines << endl;
         }
 
         inputFile.close();
@@ -233,11 +238,11 @@ int main(int argc, char *argv[]) {
                 initialString = argv[2];
             }
 
-            cout << "'" << searchString << "' " << "found in position: " << foundPos << "!" << " from " << "'" << initialString << "'" << endl; 
+            cout << "'" << searchString << "' " << "found in " << "'" << initialString << "'" << " in position " << foundPos << endl; 
         }
 
         else {
-            cout << "'" << searchString << "' " << "NOT found from initial string!: " << "'" << initialString << "'" << endl;
+            cout << "'" << searchString << "' " << "NOT found in " << "'" << initialString << "'" << endl;
         }
 
 
